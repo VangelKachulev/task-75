@@ -4,21 +4,20 @@ import "./App.css";
 
 
 function App() {
-
-  let [text, setText] = useState();
+  const [text , setText] = useState(JSON.parse(localStorage.getItem('dataText')));
+ 
 
   let textHandler = (e) => {
     setText(e.target.value);
   }
 
-  let saveText = e => {
-    e.preventDefault();
-    localStorage.setItem(text, text);
-    setText('');
-    console.log(localStorage);
+  let saveText = () => {
+   
+    localStorage.setItem('dataText', JSON.stringify(text));
+   
   }
   
-
+  
   return (
     <div className="App">
       <textarea
@@ -27,7 +26,15 @@ function App() {
         >
 
       </textarea>
-      <button onClick={saveText}>Save</button>
+      <button className="button is-large is-primary is-active"
+        onClick={saveText}>
+          Save
+        </button>
+        <button 
+        className="button is-large"
+        onClick={(e) =>{setText("")}}
+        >Clear
+        </button>
     </div>
   );
 }
