@@ -13,25 +13,25 @@ function App() {
 
   let saveText = e => {
     e.preventDefault();
-    localStorage.setItem('myText',text);
+    localStorage.setItem('myText',JSON.stringify(text));
     setText('');
 
   }
-  // let getDateFromLocalStorage = e => {
-  //   let savedText = JSON.parse(localStorage.getItem('myText'));
-  //   setText(localStorage.getItem('myText'));
-  //   setText(savedText);
-  // }
+  let getDateFromLocalStorage = e => {
+    let savedText = JSON.parse(localStorage.getItem('myText'));
+    setText(localStorage.getItem('myText'));
+    setText(savedText);
+  }
   console.log(localStorage);
   return (
     <div className="App">
       <textarea
         value={text}
         onChange={textHandler}
-      >
+        onLoad={getDateFromLocalStorage}>
 
       </textarea>
-      <button className="is-primary" onClick={saveText}>Save</button>
+      <button onClick={saveText}>Save</button>
     </div>
   );
 }
