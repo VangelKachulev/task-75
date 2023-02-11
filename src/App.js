@@ -13,7 +13,7 @@ function App() {
 
   let saveText = e => {
     e.preventDefault();
-    localStorage.setItem('myText', text);
+    localStorage.setItem(text, text);
     setText('');
     console.log(localStorage);
   }
